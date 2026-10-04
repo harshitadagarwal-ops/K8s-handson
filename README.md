@@ -1,6 +1,6 @@
-# K8s Microservices Class — Demo Runbook
+# K8s Microservices — Demo Runbook
 
-A 3-tier demo app for teaching **Deploying Microservices on Kubernetes** to beginners.
+A 3-tier demo app for  **Deploying Microservices on Kubernetes** to beginners.
 
 ```
 Browser ──> frontend (Flask, NodePort) ──> backend (Flask REST API) ──> mysql (MySQL, emptyDir)
