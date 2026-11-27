@@ -1,0 +1,10 @@
+# Copy to terraform.tfvars (gitignored) and edit.
+
+# REQUIRED: your public IP. Find it with:  curl https://checkip.amazonaws.com
+api_allowed_cidrs = ["203.0.113.10/32"]
+
+# Optional overrides (defaults shown in variables.tf)
+# region             = "ap-south-1"
+# node_capacity_type = "ON_DEMAND"   # use on the day of a live demo
+# single_nat_gateway = true
+# db_multi_az        = false

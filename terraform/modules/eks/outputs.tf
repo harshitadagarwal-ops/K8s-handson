@@ -1,0 +1,17 @@
+output "cluster_name" {
+  value = module.eks.cluster_name
+}
+
+output "cluster_endpoint" {
+  value = module.eks.cluster_endpoint
+}
+
+output "node_security_group_id" {
+  description = "Security group attached to the worker nodes (and therefore the pods)."
+  value       = module.eks.node_security_group_id
+}
+
+output "kms_key_arn" {
+  description = "KMS key that encrypts Kubernetes Secrets."
+  value       = module.eks.kms_key_arn
+}

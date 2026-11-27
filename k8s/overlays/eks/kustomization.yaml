@@ -1,0 +1,36 @@
+# EKS: images come from ECR, the database is Amazon RDS, the frontend is
+# exposed through an AWS Network Load Balancer.
+#
+# The tokens ECR_BACKEND_REPO, ECR_FRONTEND_REPO and IMAGE_TAG are replaced by
+# scripts/deploy-eks (values come from `terraform output` and .image-tag).
+# The ConfigMap "app-config" (DB_HOST, DB_NAME) and Secret "app-secret"
+# (DB_USER, DB_PASSWORD) are also created by that script, so no credentials
+# are stored in git.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+images:
+  - name: backend
+    newName: ECR_BACKEND_REPO
+    newTag: IMAGE_TAG
+  - name: frontend
+    newName: ECR_FRONTEND_REPO
+    newTag: IMAGE_TAG
+patches:
+  - target:
+      kind: Service
+      name: frontend
+    patch: |-
+      - op: add
+        path: /spec/type
+        value: LoadBalancer
+      - op: add
+        path: /spec/ports
+        value:
+          - port: 80
+            targetPort: 8080
+      - op: add
+        path: /metadata/annotations
+        value:
+          service.beta.kubernetes.io/aws-load-balancer-type: nlb
