@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Terraform (commit .terraform.lock.hcl, never state or real tfvars)
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+!*.tfvars.example
+*.tfplan
+
+# Written by scripts/build-push-ecr, read by scripts/deploy-eks
+.image-tag
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

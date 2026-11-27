@@ -1,0 +1,11 @@
+# A Namespace logically groups all resources for this demo.
+# Everything below lives in the "demo" namespace.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo
+  labels:
+    # Pod Security Admission: reject privileged pods, warn on anything
+    # that would not pass the "restricted" profile.
+    pod-security.kubernetes.io/enforce: baseline
+    pod-security.kubernetes.io/warn: restricted
